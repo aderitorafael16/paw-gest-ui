@@ -1,5 +1,3 @@
-'use server'
-
 import { LogOut } from 'lucide-react'
 import Link from 'next/link'
 
@@ -20,6 +18,8 @@ export async function UserButton({ showMenu }: { showMenu: boolean }) {
   const session = await auth()
 
   async function handleSignOut() {
+    'use server'
+
     await signOut()
   }
   return (
