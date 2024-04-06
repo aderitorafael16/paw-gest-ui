@@ -1,8 +1,10 @@
 import type { NextAuthConfig, Session } from 'next-auth'
 
 import { credentialsProvider } from './credentials-provider'
+import { drizzleAuthAdapter } from './drizzle-auth-adapter'
 
 export const authConfig = {
+  adapter: drizzleAuthAdapter,
   pages: {
     signIn: '/auth/sign-in',
     error: '/auth/error',

@@ -25,7 +25,7 @@ const financeData: FinanceDataPerMonth[] = [
   { date: '2024-05', expenses: 140000, earnings: 170000 },
 ]
 
-export default function Dashboard() {
+export default async function Dashboard() {
   return (
     <main className="flex min-h-screen flex-col space-y-5">
       <h1 className="text-center text-2xl font-bold sm:text-start">

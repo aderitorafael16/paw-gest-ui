@@ -1,0 +1,27 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1712394222172,
+      "tag": "0000_soft_firelord",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1712398061867,
+      "tag": "0001_cute_fat_cobra",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1712398350077,
+      "tag": "0002_clean_gideon",
+      "breakpoints": true
+    }
+  ]
+}

@@ -1,4 +1,12 @@
 import CredentialsProvider from 'next-auth/providers/credentials'
+import { z } from 'zod'
+
+import { db } from '@/db'
+
+const credentialsSchema = z.object({
+  email: z.string().email(),
+  password: z.string(),
+})
 
 export const credentialsProvider = CredentialsProvider({
   credentials: {
@@ -16,16 +24,14 @@ export const credentialsProvider = CredentialsProvider({
     },
   },
   async authorize(credentials) {
-    if (
-      credentials?.email === 'aderitobento16@gmail.com' &&
-      credentials.password === '12345678'
-    ) {
-      return {
-        id: '67tgr-54t5g-g54tgt-g54g4-54g5',
-        email: credentials.email,
-        name: 'Adérito Rafael',
-        image: 'https://github.com/aderitorafael16.png',
-      }
+    const { email, password } = credentialsSchema.parse(credentials)
+    const user = await db.query.user.findFirst({
+      where(fields, { eq }) {
+        return eq(fields.email, email)
+      },
+    })
+    if (email === user?.email && password === user.password) {
+      return user ?? null
     }
 
     throw new Error('Unauthorized.')

@@ -11,26 +11,26 @@ import {
 import { account, session } from '.'
 
 export const instituteType = pgEnum('InstituteType', [
-  'primary',
-  'secundary',
-  'faculty',
-  'university',
-  'formationCenter',
+  'PRIMARY',
+  'SECUNDARY',
+  'FACULTY',
+  'UNIVERSITY',
+  'FORMATIONCENTER',
 ])
 
 export const user = pgTable(
   'users',
   {
     id: uuid('id').primaryKey().defaultRandom(),
-    instituteName: text('institute_name'),
+    instituteName: text('institute_name').notNull(),
     type: instituteType('type').notNull(),
     address: text('address').notNull(),
     phoneNumber: text('phone_number').notNull(),
     websiteUrl: text('website_url').notNull(),
     email: text('email').notNull(),
     emailVerified: timestamp('email_verified'),
-    image: text('image'),
-    password: text('password'),
+    image: text('image').notNull(),
+    password: text('password').notNull(),
     createdAt: timestamp('created_at').defaultNow().notNull(),
   },
   (table) => {
