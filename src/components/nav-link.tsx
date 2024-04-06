@@ -16,6 +16,7 @@ export function NavLink({ ...props }: LinkProps) {
   return (
     <Link
       {...props}
+      prefetch={false}
       className={cn(
         'px-3 text-zinc-800 dark:text-zinc-400',
         current

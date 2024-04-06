@@ -1,4 +1,8 @@
+'use client'
+
 import { BarChartBig, Files, Landmark, Settings, User, X } from 'lucide-react'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { z } from 'zod'
 
 import { cn } from '@/lib/utils'
 
@@ -6,14 +10,20 @@ import { AsideLink } from './aside-link'
 import { Button } from './ui/button'
 import { Separator } from './ui/separator'
 import { ThemeSwitcher } from './ui/theme-switcher'
-import { UserButton } from './user-button'
 
-type NavMenuProps = {
-  showMenu: boolean
-  handleShowMenu(): void
-}
+export function NavMenu() {
+  const router = useRouter()
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
 
-export function NavMenu({ handleShowMenu, showMenu }: NavMenuProps) {
+  const showMenu = z.coerce.boolean().parse(searchParams.get('isMenuOpen'))
+
+  function handleShowMenu() {
+    const params = new URLSearchParams(searchParams)
+
+    params.delete('isMenuOpen')
+    router.push(`${pathname}?${params.toString()}`)
+  }
   return (
     <>
       <aside
@@ -30,7 +40,6 @@ export function NavMenu({ handleShowMenu, showMenu }: NavMenuProps) {
             showMenu ? 'w-full flex-row justify-between' : '',
           )}
         >
-          <UserButton showMenu={showMenu} />
           <Button
             className="md:hidden"
             onClick={handleShowMenu}

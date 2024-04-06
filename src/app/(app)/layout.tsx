@@ -1,41 +1,34 @@
-'use client'
+import { Bell } from 'lucide-react'
+import Link from 'next/link'
+import { Suspense } from 'react'
 
-import { Bell, Menu } from 'lucide-react'
-import { Suspense, useState } from 'react'
-
-import { NavLink } from '@/components/nav-link'
 import { NavMenu } from '@/components/nav-menu'
-import { Button } from '@/components/ui/button'
+import { Separator } from '@/components/ui/separator'
+import { UserButton } from '@/components/user-button'
 
+import { MenuButton } from '../../components/menu-button'
 import Loading from '../loading'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const [showMenu, setShowMenu] = useState(false)
-
-  function handleShowMenu() {
-    setShowMenu((previewShowMenu) => !previewShowMenu)
-  }
-
   return (
     <div className="flex min-h-screen w-full overscroll-none">
-      <NavMenu showMenu={showMenu} handleShowMenu={handleShowMenu} />
+      <NavMenu />
 
       <main className="flex w-full flex-1 flex-col gap-2 bg-zinc-200 bg-effects bg-center p-6 dark:bg-zinc-900 md:ml-16 ">
         <div className="flex items-start justify-between md:justify-end">
-          <Button
-            className="md:hidden"
-            onClick={handleShowMenu}
-            variant={'outline'}
-            size={'icon'}
-          >
-            <Menu className="h-4 w-4" />
-          </Button>
-          <nav className="rounded-md bg-zinc-100 p-1 dark:bg-zinc-800">
-            <NavLink href="/notification"> Notificações</NavLink>
-          </nav>
-          <button>
-            <Bell className="size-4" />9
-          </button>
+          <MenuButton />
+
+          <div className="flex h-fit items-center gap-2">
+            <UserButton />
+            <Separator orientation="vertical" />
+            <Link
+              className="flex items-center justify-center gap-1 rounded-xl bg-zinc-100 px-2 py-1 dark:bg-zinc-800"
+              href="/notification"
+            >
+              {' '}
+              <Bell className="size-4" />9
+            </Link>
+          </div>
         </div>
         <Suspense fallback={<Loading />}>{children}</Suspense>
       </main>

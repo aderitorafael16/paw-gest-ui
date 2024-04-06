@@ -1,8 +1,15 @@
 import { BarChart, DollarSign } from 'lucide-react'
+import { Metadata } from 'next'
 
 import { CardResume } from '@/components/summary/card-resume'
 import { FinanceChart } from '@/components/summary/finance-chart'
 import { Progress } from '@/components/ui/progress'
+
+export const metadata: Metadata = {
+  title: 'Dashboard',
+}
+
+export const revalidate = 900
 
 interface FinanceDataPerMonth {
   date: string

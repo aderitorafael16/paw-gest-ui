@@ -1,4 +1,4 @@
-import type { NextAuthOptions, Session } from 'next-auth'
+import type { NextAuthConfig, Session } from 'next-auth'
 
 import { credentialsProvider } from './credentials-provider'
 
@@ -37,7 +37,6 @@ export const authConfig = {
 
       return session
     },
-    // @ts-expect-error DNS
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user
 
@@ -51,7 +50,7 @@ export const authConfig = {
       }
 
       if (isOnPublicPages && isLoggedIn) {
-        return Response.redirect(new URL('/', nextUrl))
+        return Response.redirect(new URL('/dashboard', nextUrl))
       }
 
       if (isOnAPIRoutes && !isLoggedIn) {
@@ -65,4 +64,4 @@ export const authConfig = {
       return true
     },
   },
-} satisfies NextAuthOptions
+} satisfies NextAuthConfig

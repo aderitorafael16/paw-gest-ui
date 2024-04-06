@@ -2,7 +2,7 @@ import { LogOut } from 'lucide-react'
 import Link from 'next/link'
 
 import { auth, signOut } from '@/auth'
-import { cn } from '@/lib/utils'
+import { getNameInitials } from '@/utils/get-name-initials'
 
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import {
@@ -14,7 +14,7 @@ import {
   DropdownMenuTrigger,
 } from './ui/dropdown-menu'
 
-export async function UserButton({ showMenu }: { showMenu: boolean }) {
+export async function UserButton() {
   const session = await auth()
 
   async function handleSignOut() {
@@ -25,25 +25,18 @@ export async function UserButton({ showMenu }: { showMenu: boolean }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="outline-none">
-        <div className="inline-flex items-center gap-2 rounded-full bg-violet-800 p-1 ">
-          <Avatar>
-            {session?.user && session.user.image && session.user.name ? (
-              <div className="h-full w-full">
-                <AvatarImage
-                  src={session?.user.image}
-                  alt={session?.user.name}
-                />
-                <AvatarFallback>{session?.user.name}</AvatarFallback>
-              </div>
-            ) : (
-              <div className="aspect-square h-full w-full bg-accent" />
-            )}
-          </Avatar>
-          <span className={cn('md:hidden ', showMenu ? 'flex' : '')}>
-            Adérito Rafael
-            {session?.user.name}
-          </span>
-        </div>
+        <Avatar>
+          {session?.user && session.user.image && session.user.name ? (
+            <>
+              <AvatarImage src={session?.user.image} />
+              <AvatarFallback>
+                {getNameInitials(session?.user.name)}
+              </AvatarFallback>
+            </>
+          ) : (
+            <div className="aspect-square h-full w-full bg-accent" />
+          )}
+        </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>Minha Conta</DropdownMenuLabel>

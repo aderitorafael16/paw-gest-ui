@@ -8,6 +8,10 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
 
+  env: {
+    AUTH_SECRET: 'StoKqhww1bJFR5V3PVlqCReUO/X1VrvDpG4vLDuFDN4=',
+  },
+
   images: {
     remotePatterns: [
       { hostname: 'lh3.googleusercontent.com' },

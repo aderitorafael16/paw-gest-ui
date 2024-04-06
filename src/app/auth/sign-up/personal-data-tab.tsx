@@ -52,7 +52,7 @@ export function PersonalDataTab() {
 
           <div className="space-y-1">
             <Label htmlFor="address">
-              Email <Required />
+              Endereço <Required />
             </Label>
             <Input
               id="address"

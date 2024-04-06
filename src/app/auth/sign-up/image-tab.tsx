@@ -12,10 +12,10 @@ interface FileProps {
   preview: string
 }
 
-export function DocumentsTab() {
+export function ImageTab() {
   const [files, setFiles] = useState([] as FileProps[])
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    maxFiles: 4,
+    maxFiles: 1,
     accept: {
       'image/*': ['.jpeg', '.png'],
       'text/*': ['.pdf'],
@@ -33,9 +33,9 @@ export function DocumentsTab() {
 
   const thumbs = files.map((file) => (
     <div key={file.name}>
-      <div className="relative w-20 h-24 flex flex-col items-center justify-around rounded-md bg-zinc-200 dark:bg-zinc-800 p-0.5">
-        <File className="w-12 h-12 text-muted-foreground" />
-        <span className="absolute left-1/2 z-10 font-bold -translate-x-1/2 text-xs">
+      <div className="relative flex h-24 w-20 flex-col items-center justify-around rounded-md bg-zinc-200 p-0.5 dark:bg-zinc-800">
+        <File className="h-12 w-12 text-muted-foreground" />
+        <span className="absolute left-1/2 z-10 -translate-x-1/2 text-xs font-bold">
           {file.name.slice(0, 15).concat('...')}
         </span>
         <Progress className="self-end" value={50} />
@@ -47,7 +47,7 @@ export function DocumentsTab() {
   }, [])
 
   return (
-    <TabsContent className="h-[14rem] max-w-[29rem]" value="documents">
+    <TabsContent className="h-[14rem] max-w-[29rem]" value="image">
       <div>
         <label
           htmlFor="files"
@@ -58,17 +58,18 @@ export function DocumentsTab() {
           <UploadIcon className="h-4 w-4" />
           <div className="flex flex-col gap-1 text-center">
             <span className="font-medium">
-              Arraste e solte, ou clique para seleciona-lós
+              Arraste e solte, ou clique para seleciona-ló. <br />
+              Você só pode selecionar 1 item apenas.
             </span>
             <span className="text-xs text-zinc-400">
-              Aceita: PNG, JPEG, JPG, PDF, DOCX
+              Aceita: PNG, JPEG, JPG
             </span>
           </div>
         </label>
 
         <input type="file" id="files" multiple {...getInputProps()} />
 
-        <div className="flex items-center gap-2 mt-3">{thumbs}</div>
+        <div className="mt-3 flex items-center gap-2">{thumbs}</div>
       </div>
     </TabsContent>
   )

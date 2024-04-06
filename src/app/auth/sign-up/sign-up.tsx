@@ -11,7 +11,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
-import { DocumentsTab } from './documents-tab'
+import { ImageTab } from './image-tab'
 import { PasswordTab } from './password-tab'
 import { PersonalDataTab } from './personal-data-tab'
 import { SignUpButton } from './sign-up-button'
@@ -32,20 +32,20 @@ export function SignUpDialog() {
             </p>
           </AlertDialogDescription>
         </AlertDialogHeader>
-        <form action="" className="space-y-4 max-w-[29rem]">
+        <form action="" className="max-w-[29rem] space-y-4">
           <Tabs
             defaultValue="personalDatas"
             className="w-full max-w-[29rem] self-center"
           >
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="personalDatas">Dados</TabsTrigger>
-              <TabsTrigger value="documents">Documentação</TabsTrigger>
+              <TabsTrigger value="image">Logotipo</TabsTrigger>
               <TabsTrigger value="password">Senha</TabsTrigger>
             </TabsList>
 
             <PersonalDataTab />
 
-            <DocumentsTab />
+            <ImageTab />
 
             <PasswordTab />
           </Tabs>
