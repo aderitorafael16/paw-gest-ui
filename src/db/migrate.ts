@@ -1,8 +1,6 @@
-import { neon, neonConfig } from '@neondatabase/serverless'
+import { neon } from '@neondatabase/serverless'
 import { drizzle } from 'drizzle-orm/neon-http'
 import { migrate } from 'drizzle-orm/neon-http/migrator'
-
-neonConfig.fetchConnectionCache = true
 
 if (!process.env.DIRECT_DATABASE_URL) {
   throw new Error('Invalid environment variable DIRECT_DATABASE_URL')
