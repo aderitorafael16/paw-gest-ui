@@ -18,8 +18,6 @@ export const credentialsProvider = CredentialsProvider({
       },
     })
 
-    console.log(user)
-
     if (email === user?.email && password === user.password) {
       return user ?? null
     }
