@@ -1,7 +1,6 @@
 'use client'
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { Provider as JotaiProvider } from 'jotai'
 import { ThemeProvider } from 'next-themes'
 import { ReactNode, useState } from 'react'
 
@@ -20,9 +19,7 @@ export default function Providers({ children }: { children: ReactNode }) {
       disableTransitionOnChange
     >
       <QueryClientProvider client={queryClient}>
-        <JotaiProvider>
-          <TooltipProvider>{children}</TooltipProvider>
-        </JotaiProvider>
+        <TooltipProvider>{children}</TooltipProvider>
       </QueryClientProvider>
     </ThemeProvider>
   )
