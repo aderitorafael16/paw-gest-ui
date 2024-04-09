@@ -1,4 +1,5 @@
 export * from './session'
 export * from './verification-token'
-export * from './user'
+export * from './company'
 export * from './account'
+export * from './user'

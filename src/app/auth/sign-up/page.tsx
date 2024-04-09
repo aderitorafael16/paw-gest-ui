@@ -4,9 +4,10 @@ import type { Metadata } from 'next'
 import { Form } from './form'
 
 export const metadata: Metadata = {
-  title: 'Iniciar Sessão',
+  title: 'Criação de Conta',
 }
-export default async function SignIn() {
+
+export default async function SignUp() {
   return (
     <div className="flex min-h-screen w-full items-center justify-center px-4 lg:px-[10%]">
       <div className="flex flex-col overflow-hidden rounded-md border md:h-[30rem] md:flex-row">

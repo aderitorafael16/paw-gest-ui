@@ -9,6 +9,8 @@ export const env = createEnv({
     DATABASE_URL: z.string().min(1),
     DIRECT_DATABASE_URL: z.string().min(1),
     AUTH_SECRET: z.string().min(1),
+    EMAIL_SERVER: z.string().min(1),
+    EMAIL_FROM: z.string().min(1),
   },
   shared: {
     VERCEL_ENV: z
@@ -21,6 +23,8 @@ export const env = createEnv({
     AUTH_SECRET: process.env.AUTH_SECRET,
     NODE_ENV: process.env.NODE_ENV,
     VERCEL_ENV: process.env.VERCEL_ENV,
+    EMAIL_SERVER: process.env.EMAIL_SERVER,
+    EMAIL_FROM: process.env.EMAIL_FROM,
   },
   emptyStringAsUndefined: true,
 })

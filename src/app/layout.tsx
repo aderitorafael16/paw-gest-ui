@@ -1,7 +1,7 @@
 import './globals.css'
 
 import type { Metadata } from 'next'
-import { Roboto_Flex as FontSans } from 'next/font/google'
+import { Inter as FontSans } from 'next/font/google'
 
 import { Toaster } from '@/components/ui/toaster'
 import { cn } from '@/lib/utils'
@@ -11,8 +11,11 @@ import Providers from './providers'
 const fontSans = FontSans({ subsets: ['latin'], variable: '--font-sans' })
 
 export const metadata: Metadata = {
-  title: 'Paw Gest',
-  description: 'Software de Gestão escolar.',
+  title: {
+    template: '%s | Paw Gest',
+    absolute: 'Paw Gest',
+  },
+  description: 'The all-in-one management school solution for all devices.',
 }
 
 export default function RootLayout({

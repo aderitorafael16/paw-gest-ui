@@ -1,5 +1,6 @@
 import { BarChart, DollarSign } from 'lucide-react'
 import { Metadata } from 'next'
+import { unstable_noStore } from 'next/cache'
 
 import { CardResume } from '@/components/summary/card-resume'
 import { FinanceChart } from '@/components/summary/finance-chart'
@@ -26,6 +27,7 @@ const financeData: FinanceDataPerMonth[] = [
 ]
 
 export default async function Dashboard() {
+  unstable_noStore()
   return (
     <main className="flex min-h-screen flex-col space-y-5">
       <h1 className="text-center text-2xl font-bold sm:text-start">

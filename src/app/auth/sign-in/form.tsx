@@ -1,5 +1,6 @@
 import { Mail } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import google from '@/assets/google.png'
 import { Button } from '@/components/ui/button'
@@ -7,7 +8,6 @@ import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
 import { ThemeSwitcher } from '@/components/ui/theme-switcher'
 
-import { SignUpDialog } from '../sign-up/sign-up'
 import { HandleSignInWithEmail } from './actions'
 import { PasswordInput } from './password-input'
 import { SignInWithEmailButton } from './sign-in-with-email-button'
@@ -57,9 +57,14 @@ export function Form() {
           </Button>
         </div>
 
-        <p className="text-center text-xs text-zinc-950 dark:text-zinc-300">
+        <p className="text-center text-xs text-zinc-800 dark:text-zinc-300">
           Ainda não tem uma conta? <br />
-          <SignUpDialog />
+          <Link
+            className="hover:text-zinc-950 hover:underline dark:hover:text-zinc-50"
+            href="/auth/sign-up"
+          >
+            Crie agora mesmo!
+          </Link>
         </p>
       </div>
     </form>

@@ -1,6 +1,5 @@
 import { relations } from 'drizzle-orm'
 import {
-  pgEnum,
   pgTable,
   text,
   timestamp,
@@ -8,30 +7,23 @@ import {
   uuid,
 } from 'drizzle-orm/pg-core'
 
-import { account, session } from '.'
-
-export const instituteType = pgEnum('InstituteType', [
-  'PRIMARY',
-  'SECUNDARY',
-  'FACULTY',
-  'UNIVERSITY',
-  'FORMATIONCENTER',
-])
+import { account, company, session } from '.'
 
 export const user = pgTable(
   'users',
   {
     id: uuid('id').primaryKey().defaultRandom(),
-    instituteName: text('institute_name').notNull(),
-    type: instituteType('type').notNull(),
-    address: text('address').notNull(),
-    phoneNumber: text('phone_number').notNull(),
-    websiteUrl: text('website_url').notNull(),
+    companyId: uuid('company_id')
+      .notNull()
+      .references(() => company.id, {
+        onDelete: 'restrict',
+        onUpdate: 'cascade',
+      }),
+    name: text('name'),
     email: text('email').notNull(),
+    password: text('password'),
     emailVerified: timestamp('email_verified'),
-    image: text('image').notNull(),
-    password: text('password').notNull(),
-    createdAt: timestamp('created_at').defaultNow().notNull(),
+    image: text('image'),
   },
   (table) => {
     return {
@@ -40,7 +32,11 @@ export const user = pgTable(
   },
 )
 
-export const userRelations = relations(user, ({ many }) => ({
+export const userRelations = relations(user, ({ one, many }) => ({
+  company: one(company, {
+    fields: [user.companyId],
+    references: [company.id],
+  }),
   sessions: many(session),
-  account: many(account),
+  accounts: many(account),
 }))

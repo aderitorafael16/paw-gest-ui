@@ -17,8 +17,7 @@ export function ImageTab() {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     maxFiles: 1,
     accept: {
-      'image/*': ['.jpeg', '.png'],
-      'text/*': ['.pdf'],
+      'image/*': ['.jpeg', '.png', '.jpg'],
     },
     onDrop: (acceptedFiles) => {
       setFiles(
@@ -47,7 +46,7 @@ export function ImageTab() {
   }, [])
 
   return (
-    <TabsContent className="h-[14rem] max-w-[29rem]" value="image">
+    <TabsContent className="h-[14.5rem] max-w-[29rem]" value="image">
       <div>
         <label
           htmlFor="files"
